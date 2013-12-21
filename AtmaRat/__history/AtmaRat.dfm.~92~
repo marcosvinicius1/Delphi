@@ -1,0 +1,356 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'AtmaRat'
+  ClientHeight = 682
+  ClientWidth = 891
+  Color = cl3DLight
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object label1: TLabel
+    Left = 40
+    Top = 0
+    Width = 94
+    Height = 13
+    Caption = 'Intervalo de Busca:'
+  end
+  object Label2: TLabel
+    Left = 8
+    Top = 53
+    Width = 19
+    Height = 13
+    Caption = 'R03'
+  end
+  object Label3: TLabel
+    Left = 399
+    Top = 53
+    Width = 19
+    Height = 13
+    Caption = 'R05'
+  end
+  object Label4: TLabel
+    Left = 55
+    Top = 53
+    Width = 3
+    Height = 13
+    Color = clRed
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label5: TLabel
+    Left = 446
+    Top = 56
+    Width = 3
+    Height = 13
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label6: TLabel
+    Left = 8
+    Top = 296
+    Width = 81
+    Height = 13
+    Caption = 'RESULTADO R05'
+  end
+  object Label7: TLabel
+    Left = 106
+    Top = 296
+    Width = 3
+    Height = 13
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label8: TLabel
+    Left = 432
+    Top = 8
+    Width = 56
+    Height = 13
+    Caption = 'Local Banco'
+  end
+  object Label11: TLabel
+    Left = 466
+    Top = 296
+    Width = 41
+    Height = 13
+    Color = clRed
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label10: TLabel
+    Left = 466
+    Top = 519
+    Width = 154
+    Height = 13
+    Caption = 'TOTALIZADORES DIVERGENTES'
+  end
+  object Label12: TLabel
+    Left = 659
+    Top = 296
+    Width = 22
+    Height = 13
+  end
+  object Dtinicial: TDateTimePicker
+    Left = 24
+    Top = 24
+    Width = 113
+    Height = 21
+    Date = 41521.783457777770000000
+    Time = 41521.783457777770000000
+    TabOrder = 0
+  end
+  object Dtfinal: TDateTimePicker
+    Left = 176
+    Top = 24
+    Width = 113
+    Height = 21
+    Date = 41521.783648368060000000
+    Time = 41521.783648368060000000
+    TabOrder = 1
+  end
+  object DBGR03: TDBGrid
+    Left = 8
+    Top = 72
+    Width = 385
+    Height = 201
+    DataSource = dm.DataSource1
+    TabOrder = 2
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'NRFAB'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'TPARCIAL'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'EMISSAOD'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'SUM'
+        Title.Caption = 'TOTAL'
+        Visible = True
+      end>
+  end
+  object DBGR05: TDBGrid
+    Left = 399
+    Top = 72
+    Width = 417
+    Height = 201
+    DataSource = dm.DataSource2
+    TabOrder = 3
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'NRFAB'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'TPARCIAL'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'CALIQ'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'EMISSAOD'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'SUM'
+        Title.Caption = 'TOTAL'
+        Visible = True
+      end>
+  end
+  object Btpesquisa: TButton
+    Left = 320
+    Top = 24
+    Width = 75
+    Height = 25
+    Caption = 'PESQUISA'
+    TabOrder = 4
+    OnClick = BtpesquisaClick
+  end
+  object Btcalcdiferenca: TButton
+    Left = 8
+    Top = 599
+    Width = 122
+    Height = 25
+    Caption = 'CALCULAR DIFEREN'#199'A'
+    TabOrder = 5
+    OnClick = BtcalcdiferencaClick
+  end
+  object Btratiar: TButton
+    Left = 182
+    Top = 599
+    Width = 75
+    Height = 25
+    Caption = 'RATIAR'
+    TabOrder = 6
+    OnClick = BtratiarClick
+  end
+  object SGresultador05: TStringGrid
+    Left = 8
+    Top = 315
+    Width = 433
+    Height = 278
+    Ctl3D = True
+    RowCount = 1
+    FixedRows = 0
+    ParentCtl3D = False
+    TabOrder = 7
+    RowHeights = (
+      24)
+  end
+  object Edlocalbanco: TEdit
+    Left = 432
+    Top = 26
+    Width = 313
+    Height = 21
+    TabOrder = 8
+  end
+  object Btsalvarlbanco: TButton
+    Left = 772
+    Top = 24
+    Width = 42
+    Height = 25
+    Caption = 'Salvar'
+    TabOrder = 9
+    OnClick = BtsalvarlbancoClick
+  end
+  object Btlocal: TButton
+    Left = 744
+    Top = 24
+    Width = 22
+    Height = 25
+    Caption = '...'
+    TabOrder = 10
+    OnClick = BtlocalClick
+  end
+  object SGerroraliquota: TStringGrid
+    Left = 466
+    Top = 538
+    Width = 303
+    Height = 120
+    ColCount = 4
+    RowCount = 1
+    FixedRows = 0
+    TabOrder = 11
+  end
+  object PageControl1: TPageControl
+    Left = 462
+    Top = 315
+    Width = 354
+    Height = 174
+    ActivePage = TabSheet1
+    TabOrder = 12
+    object TabSheet1: TTabSheet
+      Caption = 'R04 SEM R05'
+      ExplicitWidth = 281
+      ExplicitHeight = 165
+      object DBGcancelado: TDBGrid
+        Left = 0
+        Top = 0
+        Width = 346
+        Height = 146
+        Align = alClient
+        DataSource = dm.DataSourceVerificaR04
+        TabOrder = 0
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'NRFAB'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'EMISSAOD'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'COO'
+            Visible = True
+          end>
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'TOTALIZADO'
+      ImageIndex = 1
+      ExplicitWidth = 281
+      ExplicitHeight = 165
+      object SGtotalcancel: TStringGrid
+        Left = 0
+        Top = 0
+        Width = 346
+        Height = 146
+        Align = alClient
+        ColCount = 2
+        RowCount = 1
+        FixedRows = 0
+        TabOrder = 0
+        ExplicitLeft = 3
+        ExplicitWidth = 320
+        ExplicitHeight = 120
+        RowHeights = (
+          24)
+      end
+    end
+  end
+  object OpenDialogLocalBanco: TOpenDialog
+    Filter = 'all(*.fdb)|*.fdb'
+    Left = 672
+    Top = 24
+  end
+end

@@ -1,0 +1,21 @@
+unit Uteste;
+
+interface
+uses
+ Vcl.Dialogs;
+type
+Tteste = class(TOpenDialog)
+public
+procedure teste;
+
+end;
+
+implementation
+procedure Tteste.teste;
+begin
+ShowMessage('Deu Certo');
+end;
+begin
+
+end;
+end.

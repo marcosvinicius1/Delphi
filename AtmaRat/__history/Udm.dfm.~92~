@@ -1,0 +1,978 @@
+object dm: Tdm
+  OldCreateOrder = False
+  Height = 778
+  Width = 802
+  object DataSetProvider1: TDataSetProvider
+    DataSet = SQLDataSet1
+    Left = 16
+    Top = 216
+  end
+  object DataSource1: TDataSource
+    DataSet = ClientDataSet1
+    Left = 16
+    Top = 352
+  end
+  object SQLDataSet1: TSQLDataSet
+    SchemaName = 'sysdba'
+    CommandText = 
+      'select NRFAB, TPARCIAL, EMISSAOD,sum(VPARCIAL)'#13#10'from r03 where E' +
+      'MISSAOD between :dtinicial and :dtfinal'#13#10' group by TPARCIAL, NRF' +
+      'AB, EMISSAOD'#13#10'order by NRFAB, EMISSAOD, TPARCIAL'
+    DbxCommandType = 'Dbx.SQL'
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'dtinicial'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'dtfinal'
+        ParamType = ptInput
+      end>
+    SQLConnection = SQLConnection1
+    Left = 24
+    Top = 128
+    object SQLDataSet1NRFAB: TStringField
+      FieldName = 'NRFAB'
+    end
+    object SQLDataSet1TPARCIAL: TStringField
+      FieldName = 'TPARCIAL'
+      Size = 7
+    end
+    object SQLDataSet1EMISSAOD: TDateField
+      FieldName = 'EMISSAOD'
+    end
+    object SQLDataSet1SUM: TFMTBCDField
+      FieldName = 'SUM'
+      Precision = 18
+      Size = 2
+    end
+  end
+  object ClientDataSet1: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DataSetProvider1'
+    Left = 16
+    Top = 288
+    object ClientDataSet1NRFAB: TStringField
+      FieldName = 'NRFAB'
+    end
+    object ClientDataSet1TPARCIAL: TStringField
+      FieldName = 'TPARCIAL'
+      Size = 7
+    end
+    object ClientDataSet1EMISSAOD: TDateField
+      FieldName = 'EMISSAOD'
+    end
+    object ClientDataSet1SUM: TFMTBCDField
+      FieldName = 'SUM'
+      Precision = 18
+      Size = 2
+    end
+  end
+  object DataSource2: TDataSource
+    DataSet = ClientDataSet2
+    Left = 136
+    Top = 360
+  end
+  object ClientDataSet2: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DataSetProvider2'
+    Left = 144
+    Top = 280
+    object ClientDataSet2NRFAB: TStringField
+      FieldName = 'NRFAB'
+    end
+    object ClientDataSet2TPARCIAL: TStringField
+      FieldName = 'TPARCIAL'
+      Size = 7
+    end
+    object ClientDataSet2CALIQ: TStringField
+      FieldName = 'CALIQ'
+      Size = 3
+    end
+    object ClientDataSet2EMISSAOD: TDateField
+      FieldName = 'EMISSAOD'
+    end
+    object ClientDataSet2CAST: TFMTBCDField
+      FieldName = 'CAST'
+      Precision = 18
+      Size = 2
+    end
+  end
+  object DataSetProvider2: TDataSetProvider
+    DataSet = SQLDataSet2
+    Left = 144
+    Top = 208
+  end
+  object SQLDataSet2: TSQLDataSet
+    SchemaName = 'sysdba'
+    CommandText = 
+      'select r05.nrfab, TPARCIAL,r05.caliq,r05.emissaod,cast(sum(r05.v' +
+      'liq-r05.dctor2) as numeric(13,2))'#13#10'from r05 where r05.emissaod b' +
+      'etween :dtinicial and :dtfinal and r05.cancel='#39'N'#39#13#10'group by r05.' +
+      'caliq,r05.nrfab,r05.emissaod, TPARCIAL'#13#10'order by r05.nrfab,r05.e' +
+      'missaod,r05.caliq'
+    DbxCommandType = 'Dbx.SQL'
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'dtinicial'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'dtfinal'
+        ParamType = ptInput
+      end>
+    SQLConnection = SQLConnection1
+    Left = 144
+    Top = 136
+    object SQLDataSet2NRFAB: TStringField
+      FieldName = 'NRFAB'
+    end
+    object SQLDataSet2TPARCIAL: TStringField
+      FieldName = 'TPARCIAL'
+      Size = 7
+    end
+    object SQLDataSet2CALIQ: TStringField
+      FieldName = 'CALIQ'
+      Size = 3
+    end
+    object SQLDataSet2EMISSAOD: TDateField
+      FieldName = 'EMISSAOD'
+    end
+    object SQLDataSet2CAST: TFMTBCDField
+      FieldName = 'CAST'
+      Precision = 18
+      Size = 2
+    end
+  end
+  object SQLConnection1: TSQLConnection
+    ConnectionName = 'FBConnection'
+    DriverName = 'Firebird'
+    GetDriverFunc = 'getSQLDriverINTERBASE'
+    LibraryName = 'dbxfb.dll'
+    LoginPrompt = False
+    Params.Strings = (
+      'DriverName=Firebird'
+      'Database=d:\pastamaquina\server2x.fdb'
+      'RoleName=RoleName'
+      'User_Name=sysdba'
+      'Password=masterkey'
+      'ServerCharSet='
+      'SQLDialect=3'
+      'ErrorResourceFile='
+      'LocaleCode=0000'
+      'BlobSize=-1'
+      'CommitRetain=False'
+      'WaitOnLocks=True'
+      'IsolationLevel=ReadCommitted'
+      'Trim Char=False')
+    VendorLib = 'fbclient.dll'
+    BeforeConnect = SQLConnection1BeforeConnect
+    Connected = True
+    Left = 248
+    Top = 40
+  end
+  object DataSetProviderAtualizaValorR05: TDataSetProvider
+    DataSet = SQLQueryAtualizaValorR05
+    Left = 264
+    Top = 224
+  end
+  object ClientDataSetRatiarMaior5: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DataSetProviderAtualizaValorR05'
+    Left = 264
+    Top = 304
+  end
+  object SQLQueryAtualizaValorR05: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = SQLConnection1
+    Left = 256
+    Top = 144
+  end
+  object SQLDataSetVerificaR04: TSQLDataSet
+    SchemaName = 'sysdba'
+    CommandText = 
+      'Select * FROM ('#13#10'Select m.nrfab,m.emissaod,m.coo,sum(Coalesce(d.' +
+      'id_r04,0)) kont,m.vtliq,m.cancel,m.id_r04'#13#10'From r04      m'#13#10'left' +
+      ' join r05 d on d.id_r04=m.id_r04 AND d.nrfab = m.nrfab AND d.emi' +
+      'ssaod = m.emissaod'#13#10'where m.emissaod between :DAT1 AND :DAT2 and' +
+      ' m.cancel='#39'N'#39#13#10'group by 1,2,3,5,6,7 )'#13#10'where kont <1 order by nr' +
+      'fab,emissaod'
+    DbxCommandType = 'Dbx.SQL'
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'DAT1'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'DAT2'
+        ParamType = ptInput
+      end>
+    SQLConnection = SQLConnection1
+    Left = 352
+    Top = 136
+    object SQLDataSetVerificaR04NRFAB: TStringField
+      FieldName = 'NRFAB'
+    end
+    object SQLDataSetVerificaR04EMISSAOD: TDateField
+      FieldName = 'EMISSAOD'
+    end
+    object SQLDataSetVerificaR04COO: TIntegerField
+      FieldName = 'COO'
+    end
+    object SQLDataSetVerificaR04KONT: TLargeintField
+      FieldName = 'KONT'
+    end
+    object SQLDataSetVerificaR04VTLIQ: TFMTBCDField
+      FieldName = 'VTLIQ'
+      Precision = 18
+      Size = 2
+    end
+    object SQLDataSetVerificaR04CANCEL: TStringField
+      FieldName = 'CANCEL'
+      Size = 1
+    end
+    object SQLDataSetVerificaR04ID_R04: TIntegerField
+      FieldName = 'ID_R04'
+      Required = True
+    end
+  end
+  object DataSetProviderVerificaR04: TDataSetProvider
+    DataSet = SQLDataSetVerificaR04
+    Left = 360
+    Top = 224
+  end
+  object ClientDataSetVerificaR04: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DataSetProviderVerificaR04'
+    Left = 368
+    Top = 296
+    object ClientDataSetVerificaR04NRFAB: TStringField
+      FieldName = 'NRFAB'
+    end
+    object ClientDataSetVerificaR04EMISSAOD: TDateField
+      FieldName = 'EMISSAOD'
+    end
+    object ClientDataSetVerificaR04COO: TIntegerField
+      FieldName = 'COO'
+    end
+    object ClientDataSetVerificaR04KONT: TLargeintField
+      FieldName = 'KONT'
+    end
+    object ClientDataSetVerificaR04VTLIQ: TFMTBCDField
+      FieldName = 'VTLIQ'
+      Precision = 18
+      Size = 2
+    end
+    object ClientDataSetVerificaR04CANCEL: TStringField
+      FieldName = 'CANCEL'
+      Size = 1
+    end
+    object ClientDataSetVerificaR04ID_R04: TIntegerField
+      FieldName = 'ID_R04'
+      Required = True
+    end
+  end
+  object DataSourceVerificaR04: TDataSource
+    DataSet = ClientDataSetVerificaR04
+    Left = 368
+    Top = 360
+  end
+  object ClientDataSetPesqr05: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DataSetProviderPesqr05'
+    Left = 440
+    Top = 312
+    object ClientDataSetPesqr05ID_R05_SG: TIntegerField
+      FieldName = 'ID_R05_SG'
+      Required = True
+    end
+    object ClientDataSetPesqr05TITEMB: TFMTBCDField
+      FieldName = 'TITEMB'
+      Precision = 18
+      Size = 2
+    end
+  end
+  object DataSetProviderPesqr05: TDataSetProvider
+    DataSet = SQLDataSetPesqr05
+    Left = 440
+    Top = 248
+  end
+  object SQLDataSetPesqr05: TSQLDataSet
+    SchemaName = 'sysdba'
+    CommandText = 
+      'SELECT id_r05_sg,TITEMB'#13#10'from r05 where qtde='#39'1'#39' and cancel='#39'N'#39#13 +
+      #10' and NRFAB :nrfab AND EMISSAOD :dtinicial AND CALIQ :caliq'
+    DbxCommandType = 'Dbx.SQL'
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftString
+        Name = 'nrfab'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDate
+        Name = 'dtinicial'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'caliq'
+        ParamType = ptInput
+      end>
+    SQLConnection = SQLConnection1
+    Left = 440
+    Top = 144
+    object SQLDataSetPesqr05ID_R05_SG: TIntegerField
+      FieldName = 'ID_R05_SG'
+      Required = True
+    end
+    object SQLDataSetPesqr05TITEMB: TFMTBCDField
+      FieldName = 'TITEMB'
+      Precision = 18
+      Size = 2
+    end
+  end
+  object DataSetProviderpesqr05positivo: TDataSetProvider
+    DataSet = SQLDataSetpesqr05positivo
+    Left = 560
+    Top = 224
+  end
+  object ClientDataSetpesqr05positivo: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DataSetProviderpesqr05positivo'
+    Left = 560
+    Top = 288
+    object ClientDataSetpesqr05positivoID_R05_SG: TIntegerField
+      FieldName = 'ID_R05_SG'
+      Required = True
+    end
+    object ClientDataSetpesqr05positivoBICMS2: TFMTBCDField
+      FieldName = 'BICMS2'
+      Precision = 18
+      Size = 2
+    end
+    object ClientDataSetpesqr05positivoBICMS7: TFMTBCDField
+      FieldName = 'BICMS7'
+      Precision = 18
+      Size = 7
+    end
+    object ClientDataSetpesqr05positivoVLIQ: TFMTBCDField
+      FieldName = 'VLIQ'
+      Precision = 18
+      Size = 2
+    end
+    object ClientDataSetpesqr05positivoQTDE: TFMTBCDField
+      FieldName = 'QTDE'
+      Precision = 18
+      Size = 3
+    end
+    object ClientDataSetpesqr05positivoVRUNIT: TFMTBCDField
+      FieldName = 'VRUNIT'
+      Precision = 18
+      Size = 3
+    end
+    object ClientDataSetpesqr05positivoTITEMB: TFMTBCDField
+      FieldName = 'TITEMB'
+      Precision = 18
+      Size = 2
+    end
+    object ClientDataSetpesqr05positivoCANCEL: TStringField
+      FieldName = 'CANCEL'
+      Size = 1
+    end
+  end
+  object DataSourcepesqr05positivo: TDataSource
+    DataSet = ClientDataSetpesqr05positivo
+    Left = 552
+    Top = 360
+  end
+  object SQLDataSetpesqr05positivo: TSQLDataSet
+    SchemaName = 'sysdba'
+    CommandText = 
+      'select  id_r05_sg, BICMS2, BICMS7, VLIQ, qtde, vrunit, TITEMB, c' +
+      'ancel from r05 where TITEMB=(select min(TITEMB)'#13#10'from r05 where ' +
+      'qtde=1 and'#13#10'NRFAB =:serie AND EMISSAOD =:dt AND CALIQ =:caliq an' +
+      'd cancel='#39'N'#39') and'#13#10'NRFAB =:serie AND EMISSAOD =:dt AND CALIQ =:c' +
+      'aliq and cancel='#39'N'#39
+    DbxCommandType = 'Dbx.SQL'
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftString
+        Name = 'serie'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDate
+        Name = 'dt'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'caliq'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'serie'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftDate
+        Name = 'dt'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftString
+        Name = 'caliq'
+        ParamType = ptInput
+      end>
+    SQLConnection = SQLConnection1
+    Left = 560
+    Top = 152
+    object SQLDataSetpesqr05positivoID_R05_SG: TIntegerField
+      FieldName = 'ID_R05_SG'
+      Required = True
+    end
+    object SQLDataSetpesqr05positivoBICMS2: TFMTBCDField
+      FieldName = 'BICMS2'
+      Precision = 18
+      Size = 2
+    end
+    object SQLDataSetpesqr05positivoBICMS7: TFMTBCDField
+      FieldName = 'BICMS7'
+      Precision = 18
+      Size = 7
+    end
+    object SQLDataSetpesqr05positivoVLIQ: TFMTBCDField
+      FieldName = 'VLIQ'
+      Precision = 18
+      Size = 2
+    end
+    object SQLDataSetpesqr05positivoQTDE: TFMTBCDField
+      FieldName = 'QTDE'
+      Precision = 18
+      Size = 3
+    end
+    object SQLDataSetpesqr05positivoVRUNIT: TFMTBCDField
+      FieldName = 'VRUNIT'
+      Precision = 18
+      Size = 3
+    end
+    object SQLDataSetpesqr05positivoTITEMB: TFMTBCDField
+      FieldName = 'TITEMB'
+      Precision = 18
+      Size = 2
+    end
+    object SQLDataSetpesqr05positivoCANCEL: TStringField
+      FieldName = 'CANCEL'
+      Size = 1
+    end
+  end
+  object DataSourcepesqr05valores: TDataSource
+    DataSet = ClientDataSetpesqr05valores
+    Left = 696
+    Top = 360
+  end
+  object ClientDataSetpesqr05valores: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DataSetProviderpesqr05valores'
+    Left = 688
+    Top = 296
+    object ClientDataSetpesqr05valoresID_R05_SG: TIntegerField
+      FieldName = 'ID_R05_SG'
+      Required = True
+    end
+    object ClientDataSetpesqr05valoresBICMS2: TFMTBCDField
+      FieldName = 'BICMS2'
+      Precision = 18
+      Size = 2
+    end
+    object ClientDataSetpesqr05valoresBICMS7: TFMTBCDField
+      FieldName = 'BICMS7'
+      Precision = 18
+      Size = 7
+    end
+    object ClientDataSetpesqr05valoresVLIQ: TFMTBCDField
+      FieldName = 'VLIQ'
+      Precision = 18
+      Size = 2
+    end
+    object ClientDataSetpesqr05valoresQTDE: TFMTBCDField
+      FieldName = 'QTDE'
+      Precision = 18
+      Size = 3
+    end
+    object ClientDataSetpesqr05valoresVRUNIT: TFMTBCDField
+      FieldName = 'VRUNIT'
+      Precision = 18
+      Size = 3
+    end
+    object ClientDataSetpesqr05valoresTITEMB: TFMTBCDField
+      FieldName = 'TITEMB'
+      Precision = 18
+      Size = 2
+    end
+  end
+  object DataSetProviderpesqr05valores: TDataSetProvider
+    DataSet = SQLDataSetpesqr05valores
+    Left = 696
+    Top = 224
+  end
+  object SQLDataSetpesqr05valores: TSQLDataSet
+    SchemaName = 'sysdba'
+    CommandText = 
+      'select  id_r05_sg, BICMS2, BICMS7, VLIQ, qtde, vrunit, TITEMB fr' +
+      'om r05 where TITEMB=(select max(TITEMB)'#13#10'from r05 where NRFAB =:' +
+      'serie AND EMISSAOD =:dt AND CALIQ =:caliq and cancel='#39'N'#39')AND'#13#10'NR' +
+      'FAB=:serie AND EMISSAOD=:dt AND CALIQ=:caliq and cancel='#39'N'#39
+    DbxCommandType = 'Dbx.SQL'
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'serie'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'dt'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'caliq'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'serie'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'dt'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'caliq'
+        ParamType = ptInput
+      end>
+    SQLConnection = SQLConnection1
+    Left = 696
+    Top = 160
+    object SQLDataSetpesqr05valoresID_R05_SG: TIntegerField
+      FieldName = 'ID_R05_SG'
+      Required = True
+    end
+    object SQLDataSetpesqr05valoresBICMS2: TFMTBCDField
+      FieldName = 'BICMS2'
+      Precision = 18
+      Size = 2
+    end
+    object SQLDataSetpesqr05valoresBICMS7: TFMTBCDField
+      FieldName = 'BICMS7'
+      Precision = 18
+      Size = 7
+    end
+    object SQLDataSetpesqr05valoresVLIQ: TFMTBCDField
+      FieldName = 'VLIQ'
+      Precision = 18
+      Size = 2
+    end
+    object SQLDataSetpesqr05valoresQTDE: TFMTBCDField
+      FieldName = 'QTDE'
+      Precision = 18
+      Size = 3
+    end
+    object SQLDataSetpesqr05valoresVRUNIT: TFMTBCDField
+      FieldName = 'VRUNIT'
+      Precision = 18
+      Size = 3
+    end
+    object SQLDataSetpesqr05valoresTITEMB: TFMTBCDField
+      FieldName = 'TITEMB'
+      Precision = 18
+      Size = 2
+    end
+  end
+  object DataSetProvideraliquota: TDataSetProvider
+    DataSet = SQLDataSetaliquota
+    Left = 32
+    Top = 520
+  end
+  object ClientDataSetaliquota: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DataSetProvideraliquota'
+    Left = 24
+    Top = 576
+    object ClientDataSetaliquotaCST: TIntegerField
+      FieldName = 'CST'
+    end
+    object ClientDataSetaliquotaALIQ: TStringField
+      FieldName = 'ALIQ'
+      Required = True
+      Size = 3
+    end
+    object ClientDataSetaliquotaICM_EF: TFMTBCDField
+      FieldName = 'ICM_EF'
+      Precision = 18
+      Size = 2
+    end
+  end
+  object DataSourcealiquota: TDataSource
+    DataSet = ClientDataSetaliquota
+    Left = 24
+    Top = 648
+  end
+  object SQLDataSetaliquota: TSQLDataSet
+    SchemaName = 'sysdba'
+    CommandText = 
+      'select aliqicm.aliq,aliqicm.icm_ef,aliqicm.cst from aliqicm wher' +
+      'e aliqicm.uf='#39'GO'#39' order by aliq'
+    DbxCommandType = 'Dbx.SQL'
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = SQLConnection1
+    Left = 32
+    Top = 456
+    object SQLDataSetaliquotaCST: TIntegerField
+      FieldName = 'CST'
+    end
+    object SQLDataSetaliquotaALIQ: TStringField
+      FieldName = 'ALIQ'
+      Required = True
+      Size = 3
+    end
+    object SQLDataSetaliquotaICM_EF: TFMTBCDField
+      FieldName = 'ICM_EF'
+      Precision = 18
+      Size = 2
+    end
+  end
+  object SQLQueryatualizaaliquota: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = SQLConnection1
+    Left = 144
+    Top = 456
+  end
+  object DataSetProvideratualizaaliquota: TDataSetProvider
+    DataSet = SQLQueryatualizaaliquota
+    Left = 136
+    Top = 520
+  end
+  object ClientDataSetatualizaaliquota: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DataSetProvideratualizaaliquota'
+    Left = 128
+    Top = 584
+  end
+  object DataSourceatualizaaliquota: TDataSource
+    DataSet = ClientDataSetatualizaaliquota
+    Left = 128
+    Top = 640
+  end
+  object SQLDataSetVerificaIcms: TSQLDataSet
+    SchemaName = 'sysdba'
+    CommandText = 
+      'select * from ('#13#10'select r05.nrfab,r05.caliq,r05.tparcial,r05.emi' +
+      'ssaod,sum(r05.bicms2) as somabicm,r05t.somaitem from'#13#10'(select r0' +
+      '5.nrfab,r05.caliq,r05.emissaod,sum(r05.titemb-r05.dctor2) as som' +
+      'aitem'#13#10' from r05 left join r04 on(r05.id_r04=r04.id_r04 and r05.' +
+      'coo=r04.coo)'#13#10' where r05.emissaod between :dtini and :dtfin'#13#10'  a' +
+      'nd r05.cancel='#39'N'#39' and r04.cancel='#39'N'#39' and (r05.cst_icms='#39'0'#39' or r0' +
+      '5.cst_icms='#39'00'#39')'#13#10'group by 1,2,3)as r05t'#13#10'left join'#13#10'r05'#13#10'on(r05' +
+      '.nrfab=r05t.nrfab and r05.emissaod=r05t.emissaod and r05.caliq=r' +
+      '05t.caliq)'#13#10'where r05.cancel='#39'N'#39' and (r05.cst_icms='#39'0'#39' or r05.cs' +
+      't_icms='#39'00'#39')'#13#10'group by 1,2,3,4,6'#13#10') as r05temp'#13#10'where somabicm <' +
+      '> somaitem'
+    DbxCommandType = 'Dbx.SQL'
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'dtini'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'dtfin'
+        ParamType = ptInput
+      end>
+    SQLConnection = SQLConnection1
+    Left = 232
+    Top = 456
+    object SQLDataSetVerificaIcmsNRFAB: TStringField
+      FieldName = 'NRFAB'
+    end
+    object SQLDataSetVerificaIcmsCALIQ: TStringField
+      FieldName = 'CALIQ'
+      Size = 3
+    end
+    object SQLDataSetVerificaIcmsTPARCIAL: TStringField
+      FieldName = 'TPARCIAL'
+      Size = 7
+    end
+    object SQLDataSetVerificaIcmsEMISSAOD: TDateField
+      FieldName = 'EMISSAOD'
+    end
+    object SQLDataSetVerificaIcmsSOMABICM: TFMTBCDField
+      FieldName = 'SOMABICM'
+      Precision = 18
+      Size = 2
+    end
+    object SQLDataSetVerificaIcmsSOMAITEM: TFMTBCDField
+      FieldName = 'SOMAITEM'
+      Precision = 18
+      Size = 2
+    end
+  end
+  object DataSetProviderVerificaIcms: TDataSetProvider
+    DataSet = SQLDataSetVerificaIcms
+    Left = 224
+    Top = 528
+  end
+  object ClientDataSetVerificaIcms: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DataSetProviderVerificaIcms'
+    Left = 224
+    Top = 584
+    object ClientDataSetVerificaIcmsNRFAB: TStringField
+      FieldName = 'NRFAB'
+    end
+    object ClientDataSetVerificaIcmsCALIQ: TStringField
+      FieldName = 'CALIQ'
+      Size = 3
+    end
+    object ClientDataSetVerificaIcmsTPARCIAL: TStringField
+      FieldName = 'TPARCIAL'
+      Size = 7
+    end
+    object ClientDataSetVerificaIcmsEMISSAOD: TDateField
+      FieldName = 'EMISSAOD'
+    end
+    object ClientDataSetVerificaIcmsSOMABICM: TFMTBCDField
+      FieldName = 'SOMABICM'
+      Precision = 18
+      Size = 2
+    end
+    object ClientDataSetVerificaIcmsSOMAITEM: TFMTBCDField
+      FieldName = 'SOMAITEM'
+      Precision = 18
+      Size = 2
+    end
+  end
+  object DataSourceVerificaIcms: TDataSource
+    DataSet = ClientDataSetVerificaIcms
+    Left = 224
+    Top = 640
+  end
+  object SQLQueryajustetotalizadores: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQLConnection = SQLConnection1
+    Left = 328
+    Top = 464
+  end
+  object DataSetProviderajustetotalizadores: TDataSetProvider
+    DataSet = SQLQueryajustetotalizadores
+    Left = 320
+    Top = 536
+  end
+  object ClientDataSetajustetotalizadores: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DataSetProviderajustetotalizadores'
+    Left = 328
+    Top = 592
+  end
+  object SQLDataSetVendasSemR02: TSQLDataSet
+    SchemaName = 'sysdba'
+    CommandText = 
+      'select * from (select ns20,nrocaixa,datamov,sum(coalesce(r02.id_' +
+      'r02,0)) as kont from (select necfs.ns20,vendas.nrocaixa,cast(ven' +
+      'das.data as date) as datamov'#13#10'from vendas left join necfs on (ve' +
+      'ndas.nroserie=necfs.nrfab)'#13#10'where cast(vendas.data as date) betw' +
+      'een :dtini  and :dtfin group by 1,2,3 ) as t'#13#10'left join r02'#13#10'on ' +
+      '(t.ns20=r02.nrfab and datamov=r02.dmov) where datamov between :d' +
+      'tini and :dtfin and nrocaixa<50 group by 1,2,3)'#13#10'where kont =0'
+    DbxCommandType = 'Dbx.SQL'
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'dtini'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'dtfin'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'dtini'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'dtfin'
+        ParamType = ptInput
+      end>
+    SQLConnection = SQLConnection1
+    Left = 464
+    Top = 472
+    object SQLDataSetVendasSemR02NS20: TStringField
+      FieldName = 'NS20'
+    end
+    object SQLDataSetVendasSemR02NROCAIXA: TIntegerField
+      FieldName = 'NROCAIXA'
+    end
+    object SQLDataSetVendasSemR02DATAMOV: TDateField
+      FieldName = 'DATAMOV'
+    end
+    object SQLDataSetVendasSemR02KONT: TLargeintField
+      FieldName = 'KONT'
+    end
+  end
+  object DataSetProviderVendasSemR02: TDataSetProvider
+    DataSet = SQLDataSetVendasSemR02
+    Left = 472
+    Top = 544
+  end
+  object ClientDataSetVendasSemR02: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DataSetProviderVendasSemR02'
+    Left = 480
+    Top = 616
+    object ClientDataSetVendasSemR02NS20: TStringField
+      FieldName = 'NS20'
+    end
+    object ClientDataSetVendasSemR02NROCAIXA: TIntegerField
+      FieldName = 'NROCAIXA'
+    end
+    object ClientDataSetVendasSemR02DATAMOV: TDateField
+      FieldName = 'DATAMOV'
+    end
+    object ClientDataSetVendasSemR02KONT: TLargeintField
+      FieldName = 'KONT'
+    end
+  end
+  object DataSourceVendasSemR02: TDataSource
+    DataSet = ClientDataSetVendasSemR02
+    Left = 488
+    Top = 680
+  end
+  object SQLDataSetAliquotasDiferente: TSQLDataSet
+    SchemaName = 'sysdba'
+    CommandText = 
+      'select * from (select * from r05 where r05.caliq<>r05.nr_tot  an' +
+      'd r05.emissaod between :dtini and :dtfin) as r05t'#13#10' where r05t.n' +
+      'r_tot='#39'FF'#39' and r05t.caliq<>'#39'STB'#39#13#10' or (r05t.nr_tot='#39'II'#39' and r05t' +
+      '.caliq<>'#39'IST'#39')'#13#10' or (r05t.nr_tot like '#39'T%'#39')'#13#10' and r05t.emissaod ' +
+      'between :dtini and :dtfin'
+    DbxCommandType = 'Dbx.SQL'
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'dtini'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'dtfin'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'dtini'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'dtfin'
+        ParamType = ptInput
+      end>
+    SQLConnection = SQLConnection1
+    Left = 608
+    Top = 480
+    object SQLDataSetAliquotasDiferenteNRFAB: TStringField
+      FieldName = 'NRFAB'
+    end
+    object SQLDataSetAliquotasDiferenteEMISSAOD: TDateField
+      FieldName = 'EMISSAOD'
+    end
+    object SQLDataSetAliquotasDiferenteNR_TOT: TStringField
+      FieldName = 'NR_TOT'
+      Size = 3
+    end
+    object SQLDataSetAliquotasDiferenteCALIQ: TStringField
+      FieldName = 'CALIQ'
+      Size = 3
+    end
+    object SQLDataSetAliquotasDiferenteID_R05_SG: TIntegerField
+      FieldName = 'ID_R05_SG'
+      Required = True
+    end
+  end
+  object DataSetProviderAliquotasDiferente: TDataSetProvider
+    DataSet = SQLDataSetAliquotasDiferente
+    Left = 616
+    Top = 560
+  end
+  object ClientDataSetAliquotasDiferente: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DataSetProviderAliquotasDiferente'
+    Left = 640
+    Top = 624
+    object ClientDataSetAliquotasDiferenteNRFAB: TStringField
+      FieldName = 'NRFAB'
+    end
+    object ClientDataSetAliquotasDiferenteEMISSAOD: TDateField
+      FieldName = 'EMISSAOD'
+    end
+    object ClientDataSetAliquotasDiferenteNR_TOT: TStringField
+      FieldName = 'NR_TOT'
+      Size = 3
+    end
+    object ClientDataSetAliquotasDiferenteCALIQ: TStringField
+      FieldName = 'CALIQ'
+      Size = 3
+    end
+    object ClientDataSetAliquotasDiferenteID_R05_SG: TIntegerField
+      FieldName = 'ID_R05_SG'
+      Required = True
+    end
+  end
+  object DataSourceAliquotasDiferente: TDataSource
+    DataSet = ClientDataSetAliquotasDiferente
+    Left = 632
+    Top = 680
+  end
+end

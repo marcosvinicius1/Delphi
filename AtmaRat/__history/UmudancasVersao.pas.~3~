@@ -1,0 +1,45 @@
+unit UmudancasVersao;
+
+interface
+
+uses WinApi.Windows, System.SysUtils, System.Classes, Vcl.Graphics,
+  Vcl.Forms, Vcl.Controls, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls;
+
+type
+  TTFormMensVersao = class(TForm)
+    Panel1: TPanel;
+    ProductName: TLabel;
+    Version: TLabel;
+    Copyright: TLabel;
+    Comments: TLabel;
+    OKButton: TButton;
+    NVersion: TLabel;
+    procedure FormCreate(Sender: TObject);
+    procedure OKButtonClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  TFormMensVersao: TTFormMensVersao;
+
+implementation
+
+{$R *.dfm}
+
+uses AtmaRet;
+
+procedure TTFormMensVersao.FormCreate(Sender: TObject);
+begin
+NVersion.Caption:=Form1.Caption;
+end;
+
+procedure TTFormMensVersao.OKButtonClick(Sender: TObject);
+begin
+TFormMensVersao.CloseModal;
+end;
+
+end.
+ 

@@ -1,0 +1,196 @@
+object Form2: TForm2
+  Left = 0
+  Top = 0
+  Caption = 'Form2'
+  ClientHeight = 547
+  ClientWidth = 551
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Button1: TButton
+    Left = 8
+    Top = 504
+    Width = 75
+    Height = 25
+    Caption = 'Enviar'
+    TabOrder = 0
+    OnClick = Button1Click
+  end
+  object EdtFrom: TEdit
+    Left = 80
+    Top = 32
+    Width = 121
+    Height = 21
+    TabOrder = 1
+    Text = 'EdtFrom'
+  end
+  object EdtTo: TEdit
+    Left = 80
+    Top = 59
+    Width = 121
+    Height = 21
+    TabOrder = 2
+    Text = 'EdtTo'
+  end
+  object EdCC: TEdit
+    Left = 80
+    Top = 149
+    Width = 121
+    Height = 21
+    TabOrder = 3
+    Text = 'EdCC'
+  end
+  object EdCCO: TEdit
+    Left = 80
+    Top = 176
+    Width = 121
+    Height = 21
+    TabOrder = 4
+    Text = 'EdCCO'
+  end
+  object EdAssunto: TEdit
+    Left = 80
+    Top = 232
+    Width = 121
+    Height = 21
+    TabOrder = 5
+    Text = 'EdAssunto'
+  end
+  object MemoAnexos: TMemo
+    Left = 72
+    Top = 273
+    Width = 185
+    Height = 89
+    Lines.Strings = (
+      'MemoAnexos')
+    TabOrder = 6
+  end
+  object MemoTexto: TMemo
+    Left = 72
+    Top = 384
+    Width = 185
+    Height = 89
+    Lines.Strings = (
+      'MemoTexto')
+    TabOrder = 7
+  end
+  object EdtRemetenteNome: TEdit
+    Left = 400
+    Top = 24
+    Width = 121
+    Height = 21
+    TabOrder = 8
+    Text = 'EdtRemetenteNome'
+  end
+  object EdRemetenteEmai: TEdit
+    Left = 400
+    Top = 51
+    Width = 121
+    Height = 21
+    TabOrder = 9
+    Text = 'EdRemetenteEmai'
+  end
+  object EdtSMTPLogin: TEdit
+    Left = 400
+    Top = 149
+    Width = 121
+    Height = 21
+    TabOrder = 10
+    Text = 'EdtSMTPLogin'
+  end
+  object EdtSMTPSenha: TEdit
+    Left = 400
+    Top = 176
+    Width = 121
+    Height = 21
+    TabOrder = 11
+    Text = 'EdtSMTPSenha'
+  end
+  object EdtSMTPServidor: TEdit
+    Left = 400
+    Top = 203
+    Width = 121
+    Height = 21
+    TabOrder = 12
+    Text = 'EdtSMTPServidor'
+  end
+  object EdSMTPPorta: TEdit
+    Left = 400
+    Top = 232
+    Width = 121
+    Height = 21
+    TabOrder = 13
+    Text = 'EdSMTPPorta'
+  end
+  object CBTSL: TComboBox
+    Left = 398
+    Top = 259
+    Width = 145
+    Height = 21
+    TabOrder = 14
+    Text = 'CBTSL'
+  end
+  object CBMetodo: TComboBox
+    Left = 400
+    Top = 296
+    Width = 145
+    Height = 21
+    TabOrder = 15
+    Text = 'CBMetodo'
+  end
+  object CbSMTPSSL: TCheckBox
+    Left = 400
+    Top = 336
+    Width = 97
+    Height = 17
+    Caption = 'CbSMTPSSL'
+    TabOrder = 16
+  end
+  object CBAutentica: TCheckBox
+    Left = 400
+    Top = 368
+    Width = 97
+    Height = 17
+    Caption = 'CBAutentica'
+    TabOrder = 17
+  end
+  object IdAntiFreeze1: TIdAntiFreeze
+    Left = 456
+    Top = 416
+  end
+  object IdMessage1: TIdMessage
+    AttachmentEncoding = 'MIME'
+    BccList = <>
+    CCList = <>
+    Encoding = meDefault
+    FromList = <
+      item
+      end>
+    Recipients = <>
+    ReplyTo = <>
+    ConvertPreamble = True
+    Left = 304
+    Top = 352
+  end
+  object IdSSLIOHandlerSocketOpenSSL1: TIdSSLIOHandlerSocketOpenSSL
+    MaxLineAction = maException
+    Port = 0
+    DefaultPort = 0
+    SSLOptions.Mode = sslmUnassigned
+    SSLOptions.VerifyMode = []
+    SSLOptions.VerifyDepth = 0
+    Left = 424
+    Top = 480
+  end
+  object IDSMTP1: TIdSMTP
+    SASLMechanisms = <>
+    Left = 304
+    Top = 264
+  end
+end

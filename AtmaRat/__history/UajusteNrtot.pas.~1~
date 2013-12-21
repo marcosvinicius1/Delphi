@@ -1,0 +1,11 @@
+unit UajusteNrtot;
+
+interface
+type
+procedure Ajuste;
+implementation
+
+uses AtmaRet;
+procedure Ajuste
+
+end.

@@ -1,0 +1,24 @@
+program Atmaret;
+
+uses
+  Vcl.Forms,
+  AtmaRat in 'AtmaRat.pas' {Form1},
+  Udm in 'Udm.pas' {dm: TDataModule},
+  Utread in 'Utread.pas',
+  Utreadr05 in 'Utreadr05.pas',
+  Utreaddiferenca in 'Utreaddiferenca.pas',
+  Vcl.Themes,
+  Vcl.Styles,
+  Umenssagem in 'Umenssagem.pas' {TFormmenssagem};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  TStyleManager.TrySetStyle('Metro Blue');
+  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(Tdm, dm);
+  Application.CreateForm(TTFormmenssagem, TFormmenssagem);
+  Application.Run;
+end.

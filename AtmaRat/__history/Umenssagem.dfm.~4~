@@ -1,0 +1,50 @@
+object TFormmenssagem: TTFormmenssagem
+  Left = 0
+  Top = 0
+  BorderStyle = bsToolWindow
+  Caption = 'Alerta'
+  ClientHeight = 140
+  ClientWidth = 419
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 116
+    Top = 8
+    Width = 177
+    Height = 40
+    Caption = 'AGUARDE !!'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clRed
+    Font.Height = 40
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 107
+    Top = 54
+    Width = 202
+    Height = 17
+    Caption = 'PESQUISA SENDO PROCESSADA'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = 17
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 0
+    Top = 112
+    Width = 103
+    Height = 13
+    Caption = 'AtmaRat Vers'#227'o Beta'
+  end
+end

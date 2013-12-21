@@ -1,0 +1,32 @@
+unit UmudancasVersao;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs;
+
+type
+  TFormVersao = class(TForm)
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormVersao: TFormVersao;
+
+implementation
+
+{$R *.dfm}
+
+uses AtmaRet;
+
+procedure TFormVersao.FormCreate(Sender: TObject);
+begin
+FormVersao.Caption:= Form1.Caption;
+end;
+
+end.
