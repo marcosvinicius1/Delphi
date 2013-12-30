@@ -1,0 +1,11 @@
+unit Ucriptografia;
+
+interface
+
+type
+function AsciiToInt(Caracter: Char): Integer;
+Function Criptografa(texto: string; chave: integer): String;
+
+implementation
+
+end.

@@ -53,8 +53,8 @@ uses AtmaRet, Umenssagem;
 
 procedure threadaliquota.AtualizaTela;
 begin
-  TFormmenssagem.Lbmenssagem.Caption := 'PESQUISA SENDO PROCESSADA';
-  TFormmenssagem.Close;
+  TFormenssagem.Lbmenssagem.Caption := 'PESQUISA SENDO PROCESSADA';
+  TFormenssagem.Close;
   form1.Enabled := true;
 end;
 

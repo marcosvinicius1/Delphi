@@ -1,0 +1,64 @@
+unit Ulogin;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics, IdHashMessageDigest,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+
+type
+  TFormlogin = class(TForm)
+    Edit1: TEdit;
+    Label1: TLabel;
+    Button1: TButton;
+    Button2: TButton;
+    procedure Button1Click(Sender: TObject);
+    procedure VerificaLogin;
+    procedure Button2Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Formlogin: TFormlogin;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFormlogin.Button1Click(Sender: TObject);
+begin
+  VerificaLogin;
+end;
+
+procedure TFormlogin.Button2Click(Sender: TObject);
+begin
+Application.Terminate;
+end;
+
+procedure TFormlogin.VerificaLogin;
+var
+  idmd5: TIdHashMessageDigest5;
+  Codigo: String;
+begin
+  idmd5 := TIdHashMessageDigest5.Create;
+  try
+    Codigo := idmd5.HashStringAsHex(Edit1.Text);
+  finally
+    idmd5.Free;
+  end;
+  if Codigo = Edit1.Text then
+  begin
+     ShowMessage('CHAVE VALIDA');
+  end
+  else
+  begin
+  ShowMessage('CHAVE INVALIDA !!');
+  end;
+
+end;
+
+end.

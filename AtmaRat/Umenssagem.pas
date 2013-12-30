@@ -8,7 +8,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
 
 type
-  TTFormmenssagem = class(TForm)
+  TTFormenssagem = class(TForm)
     Label1: TLabel;
     Lbmenssagem: TLabel;
     Label3: TLabel;
@@ -19,7 +19,7 @@ type
   end;
 
 var
-  TFormmenssagem: TTFormmenssagem;
+  TFormenssagem: TTFormenssagem;
 
 implementation
 

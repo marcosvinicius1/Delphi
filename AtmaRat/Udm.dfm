@@ -1,6 +1,6 @@
 object dm: Tdm
   OldCreateOrder = False
-  Height = 778
+  Height = 1033
   Width = 802
   object DataSetProvider1: TDataSetProvider
     DataSet = SQLDataSet1
@@ -533,8 +533,8 @@ object dm: Tdm
   end
   object DataSetProviderpesqr05valores: TDataSetProvider
     DataSet = SQLDataSetpesqr05valores
-    Left = 696
-    Top = 224
+    Left = 688
+    Top = 232
   end
   object SQLDataSetpesqr05valores: TSQLDataSet
     SchemaName = 'sysdba'
@@ -697,18 +697,19 @@ object dm: Tdm
     SchemaName = 'sysdba'
     CommandText = 
       'select r05temp.nrfab,r05temp.emissaod,r05temp.caliq,r05temp.tpar' +
-      'cial,somaitem,somabicm,(somaitem-somabicm) as Diferenca from ('#13#10 +
-      'select r05.nrfab,r05.caliq,r05.tparcial,r05.emissaod,sum(r05.bic' +
-      'ms2) as somabicm,r05t.somaitem from'#13#10'(select r05.nrfab,r05.caliq' +
-      ',r05.emissaod,sum(r05.titemb-r05.dctor2) as somaitem'#13#10' from r05 ' +
-      'left join r04 on(r05.id_r04=r04.id_r04 and r05.coo=r04.coo)'#13#10' wh' +
-      'ere r05.emissaod between :dtini and :dtfin'#13#10'  and r05.cancel='#39'N'#39 +
-      ' and r04.cancel='#39'N'#39' and (r05.cst_icms='#39'0'#39' or r05.cst_icms='#39'00'#39')'#13 +
-      #10'group by 1,2,3)as r05t'#13#10'left join'#13#10'r05'#13#10'on(r05.nrfab=r05t.nrfab' +
-      ' and r05.emissaod=r05t.emissaod and r05.caliq=r05t.caliq)'#13#10'where' +
-      ' r05.cancel='#39'N'#39' and (r05.cst_icms='#39'0'#39' or r05.cst_icms='#39'00'#39')'#13#10'gro' +
-      'up by 1,2,3,4,6'#13#10') as r05temp'#13#10'where somabicm <> somaitem order ' +
-      'by 1,2'
+      'cial,somaitem,somabicm,(somaitem-somabicm) as Diferenca,((cast((' +
+      'somaitem-somabicm) as numeric(13,4))/somabicm )*100) as ProcDife' +
+      'renca from ('#13#10'select r05.nrfab,r05.caliq,r05.tparcial,r05.emissa' +
+      'od,sum(r05.bicms2) as somabicm,r05t.somaitem from'#13#10'(select r05.n' +
+      'rfab,r05.caliq,r05.emissaod,sum(r05.titemb-r05.dctor2) as somait' +
+      'em'#13#10' from r05 left join r04 on(r05.id_r04=r04.id_r04 and r05.coo' +
+      '=r04.coo)'#13#10' where r05.emissaod between :dtini and :dtfin'#13#10'  and ' +
+      'r05.cancel='#39'N'#39' and r04.cancel='#39'N'#39' and (r05.cst_icms='#39'0'#39' or r05.c' +
+      'st_icms='#39'00'#39')'#13#10'group by 1,2,3)as r05t'#13#10'left join'#13#10'r05'#13#10'on(r05.nr' +
+      'fab=r05t.nrfab and r05.emissaod=r05t.emissaod and r05.caliq=r05t' +
+      '.caliq)'#13#10'where r05.cancel='#39'N'#39' and (r05.cst_icms='#39'0'#39' or r05.cst_i' +
+      'cms='#39'00'#39')'#13#10'group by 1,2,3,4,6'#13#10') as r05temp'#13#10'where somabicm <> s' +
+      'omaitem order by 1,2'
     DbxCommandType = 'Dbx.SQL'
     MaxBlobSize = -1
     Params = <
@@ -754,6 +755,11 @@ object dm: Tdm
       Precision = 18
       Size = 2
     end
+    object SQLDataSetVerificaIcmsPROCDIFERENCA: TFMTBCDField
+      FieldName = 'PROCDIFERENCA'
+      Precision = 18
+      Size = 6
+    end
   end
   object DataSetProviderVerificaIcms: TDataSetProvider
     DataSet = SQLDataSetVerificaIcms
@@ -794,6 +800,11 @@ object dm: Tdm
       FieldName = 'DIFERENCA'
       Precision = 18
       Size = 2
+    end
+    object ClientDataSetVerificaIcmsPROCDIFERENCA: TFMTBCDField
+      FieldName = 'PROCDIFERENCA'
+      Precision = 18
+      Size = 6
     end
   end
   object DataSourceVerificaIcms: TDataSource
@@ -985,5 +996,129 @@ object dm: Tdm
     DataSet = ClientDataSetAliquotasDiferente
     Left = 632
     Top = 680
+  end
+  object SQLDataSetpesqr05valores490: TSQLDataSet
+    SchemaName = 'sysdba'
+    CommandText = 
+      'select  id_r05_sg, BICMS2, BICMS7, VLIQ, qtde, vrunit, TITEMB fr' +
+      'om r05 where BICMS2=(select max(BICMS2)'#13#10'from r05 where NRFAB =:' +
+      'serie AND EMISSAOD =:dt AND CALIQ =:caliq and cancel='#39'N'#39')AND'#13#10'NR' +
+      'FAB=:serie AND EMISSAOD=:dt AND CALIQ=:caliq and cancel='#39'N'#39
+    DbxCommandType = 'Dbx.SQL'
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'serie'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'dt'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'caliq'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'serie'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'dt'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'caliq'
+        ParamType = ptInput
+      end>
+    SQLConnection = SQLConnection1
+    Left = 96
+    Top = 728
+    object SQLDataSetpesqr05valores490ID_R05_SG: TIntegerField
+      FieldName = 'ID_R05_SG'
+      Required = True
+    end
+    object SQLDataSetpesqr05valores490BICMS2: TFMTBCDField
+      FieldName = 'BICMS2'
+      Precision = 18
+      Size = 2
+    end
+    object SQLDataSetpesqr05valores490BICMS7: TFMTBCDField
+      FieldName = 'BICMS7'
+      Precision = 18
+      Size = 7
+    end
+    object SQLDataSetpesqr05valores490VLIQ: TFMTBCDField
+      FieldName = 'VLIQ'
+      Precision = 18
+      Size = 2
+    end
+    object SQLDataSetpesqr05valores490QTDE: TFMTBCDField
+      FieldName = 'QTDE'
+      Precision = 18
+      Size = 3
+    end
+    object SQLDataSetpesqr05valores490VRUNIT: TFMTBCDField
+      FieldName = 'VRUNIT'
+      Precision = 18
+      Size = 3
+    end
+    object SQLDataSetpesqr05valores490TITEMB: TFMTBCDField
+      FieldName = 'TITEMB'
+      Precision = 18
+      Size = 2
+    end
+  end
+  object DataSetProviderpesqr05positivo490: TDataSetProvider
+    DataSet = SQLDataSetpesqr05valores490
+    Left = 80
+    Top = 800
+  end
+  object ClientDataSetpesqr05valores490: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DataSetProviderpesqr05positivo490'
+    Left = 80
+    Top = 864
+    object ClientDataSetpesqr05valores490ID_R05_SG: TIntegerField
+      FieldName = 'ID_R05_SG'
+      Required = True
+    end
+    object ClientDataSetpesqr05valores490BICMS2: TFMTBCDField
+      FieldName = 'BICMS2'
+      Precision = 18
+      Size = 2
+    end
+    object ClientDataSetpesqr05valores490BICMS7: TFMTBCDField
+      FieldName = 'BICMS7'
+      Precision = 18
+      Size = 7
+    end
+    object ClientDataSetpesqr05valores490VLIQ: TFMTBCDField
+      FieldName = 'VLIQ'
+      Precision = 18
+      Size = 2
+    end
+    object ClientDataSetpesqr05valores490QTDE: TFMTBCDField
+      FieldName = 'QTDE'
+      Precision = 18
+      Size = 3
+    end
+    object ClientDataSetpesqr05valores490VRUNIT: TFMTBCDField
+      FieldName = 'VRUNIT'
+      Precision = 18
+      Size = 3
+    end
+    object ClientDataSetpesqr05valores490TITEMB: TFMTBCDField
+      FieldName = 'TITEMB'
+      Precision = 18
+      Size = 2
+    end
   end
 end

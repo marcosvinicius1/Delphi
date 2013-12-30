@@ -162,6 +162,25 @@ type
     ClientDataSetVerificaIcmsSOMAITEM: TFMTBCDField;
     SQLDataSetVerificaIcmsDIFERENCA: TFMTBCDField;
     ClientDataSetVerificaIcmsDIFERENCA: TFMTBCDField;
+    SQLDataSetVerificaIcmsPROCDIFERENCA: TFMTBCDField;
+    ClientDataSetVerificaIcmsPROCDIFERENCA: TFMTBCDField;
+    SQLDataSetpesqr05valores490: TSQLDataSet;
+    SQLDataSetpesqr05valores490ID_R05_SG: TIntegerField;
+    SQLDataSetpesqr05valores490BICMS2: TFMTBCDField;
+    SQLDataSetpesqr05valores490BICMS7: TFMTBCDField;
+    SQLDataSetpesqr05valores490VLIQ: TFMTBCDField;
+    SQLDataSetpesqr05valores490QTDE: TFMTBCDField;
+    SQLDataSetpesqr05valores490VRUNIT: TFMTBCDField;
+    SQLDataSetpesqr05valores490TITEMB: TFMTBCDField;
+    DataSetProviderpesqr05positivo490: TDataSetProvider;
+    ClientDataSetpesqr05valores490: TClientDataSet;
+    ClientDataSetpesqr05valores490ID_R05_SG: TIntegerField;
+    ClientDataSetpesqr05valores490BICMS2: TFMTBCDField;
+    ClientDataSetpesqr05valores490BICMS7: TFMTBCDField;
+    ClientDataSetpesqr05valores490VLIQ: TFMTBCDField;
+    ClientDataSetpesqr05valores490QTDE: TFMTBCDField;
+    ClientDataSetpesqr05valores490VRUNIT: TFMTBCDField;
+    ClientDataSetpesqr05valores490TITEMB: TFMTBCDField;
     procedure SQLConnection1BeforeConnect(Sender: TObject);
   private
     { Private declarations }

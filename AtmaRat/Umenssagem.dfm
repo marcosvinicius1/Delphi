@@ -1,4 +1,4 @@
-object TFormmenssagem: TTFormmenssagem
+object TFormenssagem: TTFormenssagem
   Left = 0
   Top = 0
   BorderStyle = bsNone
@@ -29,7 +29,7 @@ object TFormmenssagem: TTFormmenssagem
     ParentFont = False
   end
   object Lbmenssagem: TLabel
-    Left = 99
+    Left = 91
     Top = 54
     Width = 202
     Height = 17

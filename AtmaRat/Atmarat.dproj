@@ -111,7 +111,7 @@
 			<DCCReference Include="Utreadr05.pas"/>
 			<DCCReference Include="Utreaddiferenca.pas"/>
 			<DCCReference Include="Umenssagem.pas">
-				<Form>TFormmenssagem</Form>
+				<Form>TFormenssagem</Form>
 			</DCCReference>
 			<DCCReference Include="Utreadrateio.pas"/>
 			<DCCReference Include="UtreadMarcaCancelado.pas"/>
@@ -127,6 +127,11 @@
 			</DCCReference>
 			<DCCReference Include="UmudancasVersao.pas">
 				<Form>FormVersao</Form>
+				<FormType>dfm</FormType>
+			</DCCReference>
+			<DCCReference Include="Uthreadcorrige490.pas"/>
+			<DCCReference Include="Ulogin.pas">
+				<Form>Formlogin</Form>
 				<FormType>dfm</FormType>
 			</DCCReference>
 			<None Include="ModelSupport_AtmaTech\default.txvpck"/>
